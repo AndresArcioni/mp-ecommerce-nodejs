@@ -38,10 +38,10 @@ app.post('/buyConfirm', (req, res) => {
         auto_return: 'approved',//autoredireccion activada
         items: [{
             id: 1234,
-            picture_url: 'https://andresarcioni-mp-commerce-node.herokuapp.com/assets/samsung-galaxy-s9-xxl.jpg',
-            title: 'Nombre del producto seleccionado del carrito del ejercicio',
+            picture_url: req.query.img,
+            title: req.query.title,
             description: 'Dispositivo móvil de Tienda e-commerce',
-            unit_price: 994,//FLOAT
+            unit_price: req.query.price,//FLOAT
             quantity: 1//INTEGER
             //aca iría la consulta a la db; ~ este es un producto harcodeado ~
         }],
@@ -99,7 +99,7 @@ app.get('/cb', (req, res) => {
 })
 
 app.post('/webhooks', (req, res) => {
-    console.log('webhook', req.body)
+    console.log('webhooks:', req.body)
     res.status(200).send(req.body)
 })
 

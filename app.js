@@ -27,7 +27,7 @@ app.get('/detail', function (req, res) {
 app.post('/buyConfirm', (req, res) => {
 
     let host = 'https://andresarcioni-mp-commerce-node.herokuapp.com/'
-    let urlCb = 'callback?status='
+    let urlCb = 'cb?status='
 
     let preference = {
         back_urls : {

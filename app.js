@@ -16,12 +16,16 @@ app.use(express.static('assets'));
 
 app.use('/assets', express.static(__dirname + '/assets'));
 
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+
 app.get('/', function (req, res) {
     res.render('home');
 });
 
 app.get('/detail', function (req, res) {
-    res.render('detail', req.query);
+    let theQuery = req.query
+    res.render('detail', {theQuery:theQuery});
 });
 
 app.post('/buyConfirm', (req, res) => {
@@ -38,10 +42,10 @@ app.post('/buyConfirm', (req, res) => {
         auto_return: 'approved',//autoredireccion activada
         items: [{
             id: 1234,
-            picture_url: req.query.img,
-            title: req.query.title,
+            picture_url: 'https://andresarcioni-mp-commerce-node.herokuapp.com/assets/Screen%20Shot%202017-11-01%20at%2013.01.54.png',
+            title: req.body.title,
             description: 'Dispositivo móvil de Tienda e-commerce',
-            unit_price: req.query.price,//FLOAT
+            unit_price: Number(req.body.price),//FLOAT
             quantity: 1//INTEGER
             //aca iría la consulta a la db; ~ este es un producto harcodeado ~
         }],

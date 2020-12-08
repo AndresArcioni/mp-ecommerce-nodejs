@@ -74,17 +74,19 @@
                                         <p class="as-producttile-tilelink">
                                             <span data-ase-truncate="2"> {{ title }} </span>
                                         </p>
-
                                     </h3>
                                 </div>
                                 <h3 >
-                                    {{ price }}
+                                    {{ theQuery.price }}
                                 </h3>
                                 <h3 >
-                                    {{ unit }}
+                                    {{ theQuery.unit }}
                                 </h3>
                             </div>
                             <form action="/buyConfirm" method="POST">
+                                <input type="hidden" name="title" value="{{theQuery.title}}">
+                                <input type="hidden" name="price" value="{{theQuery.price}}">
+
                                 <button type="submit" class="mercadopago-button">Pagar</button>
                             </form>
                         </div>
